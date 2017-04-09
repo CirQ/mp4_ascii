@@ -48,7 +48,7 @@ class AsciiImg(object):
                 r, g, b = img.getpixel((i,j))
                 intensity = 0.299*r + 0.587*g + 0.114*b
                 grey_index = int(intensity * len(charset) / 255.0)
-                ascii_img[j] += charset[grey_index if grey_index<len(charset) else grey_index-1]
+                ascii_img[j] += charset[grey_index]
         return ascii_img
 
     def draw_color_ascii(self, charset=__DEFAULTCHARS):
@@ -65,7 +65,7 @@ class AsciiImg(object):
                 r, g, b = img.getpixel((i,j))
                 intensity = 0.299*r + 0.587*g + 0.114*b
                 grey_index = int(intensity * len(charset) / 255.0)
-                ascii_img[j] += charset[grey_index if grey_index<len(charset) else grey_index-1]
+                ascii_img[j] += charset[grey_index]
                 color_map[j].append((r, g, b))
         return ascii_img, color_map
 
@@ -85,16 +85,16 @@ class AsciiImg(object):
                 r, g, b = img.getpixel((i,j))
                 intensity = 0.299*r + 0.587*g + 0.114*b
                 grey_index = int(intensity * len(charset) / 255.0)
-                ascii_img[j] += charset[grey_index if grey_index<len(charset) else grey_index-1]
+                ascii_img[j] += charset[grey_index] # if grey_index<len(charset) else grey_index-1]
                 ###############################################################
                 # The color map is rearanged  in B, G, R order, it is because #
                 # OpenCV reads the RGB image in such ways. (Damn design)      #
                 ###############################################################
                 color_map[j].append((b, g, r))
+            count += 1
             if count > line:
                 yield ascii_img, color_map
                 count = 0
-            count += 1
 
     @staticmethod
     def sort(charset):
