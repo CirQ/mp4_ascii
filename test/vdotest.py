@@ -5,8 +5,12 @@
 
 from mp4_ascii.ascii_player import ascii_player
 
-s = "MNHQ$OC?7>!:-;. "
+"""
+    Test for generating and displaying a video in ascii form
+    and then delete all intermediate cached frames.
+"""
+
 ap = ascii_player.ascii_player("gensou.mp4")
-ap.save_ascii_frames(charset=s, fps=4)
+ap.save_ascii_frames(charset="MNHQ$OC?7>!:-;. ", fps=4)
 ap.display_ascii((1280, 698))
 ap.delete_ascii_frames()

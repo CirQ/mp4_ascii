@@ -15,6 +15,12 @@ import numpy
 
 class ascii_player(object):
     def __init__(self, videoname, **kw):
+        """
+        This is the final class used to directly 
+         generate ascii video and display it.
+        :param videoname: the file name of the video
+        :param kw: The same as ImgDrawer() constructor.
+        """
         self.fileprefix = videoname.split(".")[0]
         self.dirname = "ascii_frames_" + self.fileprefix
         self.reader = Mp4Reader.Mp4Reader(videoname)
@@ -22,6 +28,13 @@ class ascii_player(object):
         self.id = ImgDrawer.ImgDrawer(**kw)
 
     def save_ascii_frames(self, charset=None, **kw):
+        """
+        After an ascii_player instance is created,
+         this method should be invoked to save all
+         intermediate frames in a directory.
+        :param charset: the charactor set of the ascii image.
+        :param kw: the same as Mp4Reader.frames() iterator.
+        """
         i = 0
         os.mkdir(self.dirname)
         for frame in self.reader.frames(**kw):
@@ -32,12 +45,19 @@ class ascii_player(object):
             self.id.save_grey_ascii("%s/ascii_%s_%d.jpg"%(self.dirname, self.fileprefix, i), ascii_img)
 
     def delete_ascii_frames(self):
+        """
+        Delete all cached files (images), which will be hundreds of megabytes.
+        """
         for fle in os.listdir(self.dirname):
             filepath = os.path.join(self.dirname, fle)
             os.remove(filepath)
         os.rmdir(self.dirname)
 
     def display_ascii(self, windowsize):
+        """
+        Display the ascii image like a video.
+        :param windowsize: the size of displaying window.
+        """
         frames = len(os.listdir(self.dirname))
         cv2.namedWindow(self.fileprefix, cv2.WINDOW_NORMAL)
         cv2.resizeWindow(self.fileprefix, windowsize[0], windowsize[1])
