@@ -3,23 +3,10 @@
 # Author: CirQ
 # Created Time: 2017-04-09 11:09:02
 
-from mp4_ascii.Mp4Processor.Mp4Reader import Mp4Reader
-import cv2
-import time
-import numpy
-from PIL import Image
+from mp4_ascii.ascii_player import ascii_player
 
-
-reader = Mp4Reader("gensou.mp4")
-reader.save_frames(fps=1)
-
-
-# count = 0
-# for f in reader.frames():
-#     cv2.imshow("BAKA", f)
-#     img = Image.fromarray(numpy.uint8(f))
-#     count += 1
-#     if count == 50:
-#         img.show()
-#         time.sleep(2)
-#         count = 0
+s = "MNHQ$OC?7>!:-;. "
+ap = ascii_player.ascii_player("gensou.mp4")
+ap.save_ascii_frames(charset=s, fps=4)
+ap.display_ascii((1280, 698))
+ap.delete_ascii_frames()

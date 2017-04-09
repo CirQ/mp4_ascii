@@ -47,7 +47,7 @@ class AsciiImg(object):
             for i in range(self.width):
                 r, g, b = img.getpixel((i,j))
                 intensity = 0.299*r + 0.587*g + 0.114*b
-                grey_index = int(intensity * len(charset) / 255.0)
+                grey_index = int(intensity * len(charset) / 256.0)
                 ascii_img[j] += charset[grey_index]
         return ascii_img
 
@@ -64,7 +64,7 @@ class AsciiImg(object):
             for i in range(self.width):
                 r, g, b = img.getpixel((i,j))
                 intensity = 0.299*r + 0.587*g + 0.114*b
-                grey_index = int(intensity * len(charset) / 255.0)
+                grey_index = int(intensity * len(charset) / 256.0)
                 ascii_img[j] += charset[grey_index]
                 color_map[j].append((r, g, b))
         return ascii_img, color_map
@@ -84,7 +84,7 @@ class AsciiImg(object):
             for i in range(self.width):
                 r, g, b = img.getpixel((i,j))
                 intensity = 0.299*r + 0.587*g + 0.114*b
-                grey_index = int(intensity * len(charset) / 255.0)
+                grey_index = int(intensity * len(charset) / 256.0)
                 ascii_img[j] += charset[grey_index] # if grey_index<len(charset) else grey_index-1]
                 ###############################################################
                 # The color map is rearanged  in B, G, R order, it is because #
