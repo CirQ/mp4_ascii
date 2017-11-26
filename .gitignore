@@ -11,4 +11,4 @@ __pycache__/
 
 # video
 *.mp4
-frames_*/
+ascii_frames_*/

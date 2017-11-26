@@ -11,6 +11,6 @@ from mp4_ascii.ascii_player import ascii_player
 """
 
 ap = ascii_player.ascii_player("gensou.mp4")
-ap.save_ascii_frames(charset="MNHQ$OC?7>!:-;. ", fps=4)
+# ap.save_ascii_frames(charset="MNHQ$OC?7>!:-;. ", fps=4)
 ap.display_ascii((1280, 698))
-ap.delete_ascii_frames()
+# ap.delete_ascii_frames()
