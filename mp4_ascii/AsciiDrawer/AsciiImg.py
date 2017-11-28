@@ -24,7 +24,7 @@ class AsciiImg(object):
         """
         self.image = Image.open(path)
         self.width = int(self.image.size[0])
-        self.height = int(self.image.size[1] * 0.53)
+        self.height = int(self.image.size[1] * 0.72)
 
     def to_image(self, image):
         """

@@ -12,3 +12,4 @@ __pycache__/
 # video
 *.mp4
 ascii_frames_*/
+MONACO.TTF

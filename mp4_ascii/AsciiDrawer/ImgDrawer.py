@@ -4,19 +4,20 @@
 # Author: CirQ
 # Created Time: 2017-04-07 17:33:15
 ########################################
-from PIL import Image, ImageDraw
+from os import path
+from PIL import Image, ImageDraw, ImageFont
 
 
 class ImgDrawer(object):
-    def __init__(self, font=None, spacing=0):
+    def __init__(self, spacing=0):
         """
         Construtor, this class is for saving an ascii-form image as jpg file,
          or return this image as a Pillow.Image instance.
-        :param font: font used in this class, should be a Pillow.Image instance.
         :param spacing: spacing between lines in pixels.
         """
+        fontpath = path.join(path.dirname(__file__), 'MONACO.TTF')
         self.draw = ImageDraw.Draw(Image.new("RGB", (0,0)))
-        self.font = font
+        self.font = ImageFont.truetype(fontpath, size=24)
         self.spacing = spacing
         self.awidth, self.aheight = self.draw.textsize("@", font=self.font, spacing=self.spacing)
 
@@ -42,8 +43,7 @@ class ImgDrawer(object):
         img, size = self.__getbase(ascii_img)
         self.draw = ImageDraw.Draw(img)
         for i in range(len(ascii_img)):
-            self.draw.text((0, self.aheight*i), ascii_img[i],
-                    fill=(0,0,0), font=self.font, spacing=self.spacing)
+            self.draw.text((0, self.aheight*i), ascii_img[i], fill=(0,0,0), font=self.font)
         img = img.resize((int(size[0]*ratio), int(size[1]*ratio)), Image.BILINEAR)
         img.save(save_name)
 
